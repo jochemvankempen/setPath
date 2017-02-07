@@ -14,12 +14,12 @@ catch
 end
 
 
-try
-    pos = [ -1549         217        1500         900];
-catch
-    pos = [ 50         150         1500         900];
-end
-set(gcf, 'Position', pos)
+% try
+%     pos = [ -1549         217        1500         900];
+% catch
+%     pos = [ 50         150         1500         900];
+% end
+% set(gcf, 'Position', pos)
 set( gcf, 'menubar', 'figure' )
 % set(hF,'units','normalized','outerposition',[0.1 0.1 0.6 0.6])
 
