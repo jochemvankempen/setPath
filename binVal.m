@@ -16,6 +16,13 @@ function [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType)
 
 [tmpDat,sortIdx] = sort(inpData(:)); % sort all values
 
+if nBin == 1
+    binEdges    = [tmpDat(1)-1 tmpDat(end)+1];
+    binIdx      = ones(length(tmpDat),1);
+    binValues{1}= tmpDat;
+    return
+end
+
 [~, revIdx] = sort(sortIdx);%unsort your data
 
 if sum(tmpDat(revIdx) == inpData(:)) ~= length(inpData)

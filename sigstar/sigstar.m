@@ -1,4 +1,4 @@
-function varargout=sigstar(groups,stats,nosort)
+function varargout=sigstar(groups,stats,sign,nosort)
     % sigstar - Add significance stars to bar charts, boxplots, line charts, etc,
     %
     % H = sigstar(groups,stats,nsort)
@@ -85,6 +85,9 @@ function varargout=sigstar(groups,stats,nosort)
         stats=repmat(0.05,1,length(groups));
     end
     if nargin<3
+        sign=0;
+    end
+    if nargin<4
         nosort=0;
     end
 
@@ -181,7 +184,11 @@ function varargout=sigstar(groups,stats,nosort)
     yd=myRange(y)*0.05; %separate sig bars vertically by 5% 
 
     for ii=1:length(groups)
-        thisY=findMinY(xlocs(ii,:))+yd;
+        if sign<0
+            thisY=findMinY(xlocs(ii,:), sign)-yd;
+        else
+            thisY=findMinY(xlocs(ii,:), sign)+yd;
+        end
         H(ii,:)=makeSignificanceBar(xlocs(ii,:),thisY,stats(ii));
     end
     %-----------------------------------------------------
@@ -197,8 +204,13 @@ function varargout=sigstar(groups,stats,nosort)
     yd=myRange(ylim)*0.01; %Ticks are 1% of the y axis range
     for ii=1:length(groups)
         y=get(H(ii,1),'YData');
-        y(1)=y(1)-yd;
-        y(4)=y(4)-yd;   
+        if sign<0
+            y(1)=y(1)+yd;
+            y(4)=y(4)+yd;
+        else
+            y(1)=y(1)-yd;
+            y(4)=y(4)-yd;
+        end
         set(H(ii,1),'YData',y)
     end
 
@@ -273,7 +285,7 @@ end %close makeSignificanceBar
 
 
 
-function Y=findMinY(x)
+function Y=findMinY(x, sign)
     % The significance bar needs to be plotted a reasonable distance above all the data points
     % found over a particular range of X values. So we need to find these data and calculat the 
     % the minimum y value needed to clear all the plotted data present over this given range of 
@@ -287,8 +299,11 @@ function Y=findMinY(x)
     set(gca,'xlim',x) %Matlab automatically re-tightens y-axis
 
     yLim = get(gca,'YLim'); %Now have max y value of all elements within range.
-    Y = max(yLim);
-
+    if sign<0
+        Y = min(yLim);        
+    else
+        Y = max(yLim);
+    end
     axis(gca,'normal')
     set(gca,'XLim',oldXLim,'YLim',oldYLim)
 
