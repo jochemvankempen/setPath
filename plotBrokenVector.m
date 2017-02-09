@@ -6,6 +6,9 @@ function h = plotBrokenVector(xData, yData, idx, plSettings)
 % xData: data on x-axis, e.g. time values
 % yData: data on y-axis
 % idx: vector of zeros and ones of same length as x and y. Where idx is 1, it will plot yData 
+%
+% OUTPUT
+% h: handle to line
 
 if sum(idx)==0 % if there are no ones, do not plot anything
     h=[];
