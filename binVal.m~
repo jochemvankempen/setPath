@@ -1,8 +1,7 @@
 function [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType)
 % [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType)
 %
-% sort values (e.g. RTs) in bins. Ignores NaN values (note that zeros are
-% used in the binning!
+% sort values (e.g. RTs) in bins.
 %
 % INPUT:
 % inpData   = values to sort
@@ -33,11 +32,11 @@ if nBin == 1
     return
 end
 
-% [~, revIdx] = sort(sortIdxOriginal);%unsort your data
+[~, revIdx] = sort(sortIdxOriginal);%unsort your data
 
-% if sum(tmpDatOriginal(revIdx) == inpData(:)) ~= length(inpData)
-%     error('something went wrong sorting')
-% end      
+if sum(tmpDatOriginal(revIdx) == inpData(:)) ~= length(inpData)
+    error('something went wrong sorting')
+end      
 
 switch binType
     case 'median'
@@ -75,9 +74,7 @@ for iBin = 1:nBin
     binValues{iBin} = [inpData(binIdx==iBin)];
 end
 
-if ~isempty(isnan(inpData))
-    binIdx(isnan(inpData)) = NaN;
-end
+
     
     
     

@@ -53,7 +53,7 @@ normVector      = averageVector/sqrt(averageVector'*averageVector)^2;% norm of t
 if plot_lp
     figure(1),clf
     subplot(2,2,1)
-    boundedline(tt, mean(erp,2), std(erp,[],2))
+    boundedline(tt, std(erp,[],2), mean(erp,2))
     title('average vector')
     
     subplot(2,2,2)
@@ -71,6 +71,9 @@ for itrial = 1:nTrial
         tIdx = ones(length(tt),1);
     end
 
+    if itrial==4
+        erp(:,itrial) = erp(:,itrial)+5;
+    end
     % for each trial, compute linear projection by multiplying single trial
     % row vector by the norm and deviding by the length
     lp(itrial,1) = (erp(tIdx,itrial)'*normVector(tIdx))/length(normVector(tIdx));
@@ -78,7 +81,7 @@ for itrial = 1:nTrial
     if plot_lp
         subplot(2,2,3)
         hold on
-        plot(tt(tIdx),erp(tIdx,itrial),'color',clrs(itrial,:))
+        plot(erp(:,itrial),'color',clrs(itrial,:))
         if ~isempty(RT)
             title(['single trial vector, RT=' num2str(tt(RT(itrial)))])
         else
