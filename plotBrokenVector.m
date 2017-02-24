@@ -59,10 +59,14 @@ function Y=findMinY(yJitter)
 
     yLim = get(gca,'YLim'); %Now have max y value of all elements within range.
     Y = min(yLim);
-    Y = Y - abs(Y*0.1*yJitter);
-
     
-    axis(gca,'normal')
-    set(gca,'XLim',oldXLim,'YLim',[Y- abs(Y*0.1*yJitter) oldYLim(2)])
+%     if sign<0
+        Y = Y - abs(0.1 * yJitter * range(yLim));
+%     elseif sign>0
+%         Y = Y + abs(0.1 * range(yLim));
+%     end
+    
+        axis(gca,'normal')
+        set(gca,'XLim',oldXLim,'YLim',[Y - abs(0.2*range(yLim)) oldYLim(2)])
 
 end %close findMinY

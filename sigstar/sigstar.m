@@ -276,8 +276,10 @@ function H=makeSignificanceBar(x,y,p)
         'Tag','sigstar_stars');
 
     Y=ylim;
-    if Y(2)<starY
+    if Y(2)<starY*1.1
         ylim([Y(1),starY+myRange(Y)*0.05])
+    elseif Y(1)>starY*1.1
+        ylim([starY-myRange(Y)*0.05 Y(2)])
     end
 
 
