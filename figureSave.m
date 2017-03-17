@@ -1,12 +1,5 @@
-% DIR.figPNG = [DIR.fig 'PNG' filesep];
-% if ~exist([DIR.figPNG],'dir')
-%     mkdir(DIR.figPNG)
-% end
-% 
-% DIR.figEPSC = [DIR.fig 'EPS' filesep];
-% if ~exist([DIR.figEPSC],'dir')
-%     mkdir(DIR.figEPSC)
-% end
+% saveFigName
+
 
 saveFigName = removePeriodFromName(saveFigName);
 

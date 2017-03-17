@@ -1,4 +1,6 @@
 function h = plotBrokenVector(xData, yJitter, idx, plSettings)
+% h = plotBrokenVector(xData, yJitter, idx, plSettings)
+%
 %function to plot parts of a vector, e.g. for significance values in a time
 %plot.
 %
