@@ -1,4 +1,6 @@
 function lp = linearProjection(erp, RT, tt, plot_lp)
+% lp = linearProjection(erp, RT, tt, plot_lp)
+%
 % computes the linear projection of single trials on the average vector.
 % 
 % INPUT
@@ -68,7 +70,7 @@ for itrial = 1:nTrial
     if ~isempty(RT)
         tIdx = tt<=RT(itrial);
     else
-        tIdx = ones(length(tt),1);
+        tIdx = tt<=tt(end);
     end
 
     % for each trial, compute linear projection by multiplying single trial
@@ -78,9 +80,9 @@ for itrial = 1:nTrial
     if plot_lp
         subplot(2,2,3)
         hold on
-        plot(tt(tIdx),erp(tIdx,itrial),'color',clrs(itrial,:))
+        plot(tt(1,tIdx),erp(tIdx,itrial),'color',clrs(itrial,:))
         if ~isempty(RT)
-            title(['single trial vector, RT=' num2str(tt(RT(itrial)))])
+            title(['single trial vector, RT=' num2str(RT(itrial))])
         else
             title(['single trial vector'])
         end

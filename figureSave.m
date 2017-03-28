@@ -3,6 +3,10 @@
 
 saveFigName = removePeriodFromName(saveFigName);
 
+if ~exist('D','var')
+    D = DIR;
+end
+
 if Pl.printPNG
         fileExt = 'png';
         print(gcf,['-d' fileExt],[D.fig saveFigName '.' fileExt])
