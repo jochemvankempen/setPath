@@ -1,7 +1,7 @@
 function decodeAll(DEC,data,trialLabel,savefilename,decodeDir,times2downsample,freq)
 
 %check if file already exists.
-if exist([decodeDir 'dTF_' savefilename '.mat' ],'file'), disp(savefilename), return, end
+if exist([decodeDir 'dTF_' savefilename '.mat' ],'file'), disp(savefilename), end
 disp(['working on: ' 'dTF_' savefilename '.mat'])
 
 % get informaion about number of time and freq points etc.
