@@ -13,8 +13,8 @@ title('single vector')
 
 vectors = zeros(length(vector),nTrials);
 for ivec = 1:nTrials
-    %make several vectors with different slopes and add noise
-    vectors(:,ivec) = vector*rand + rand(1,length(vector))/10;
+    %make several vectors with different slopes
+    vectors(:,ivec) = vector*rand;
 end
 
 subplot(2,2,2)
@@ -35,11 +35,10 @@ for itrial = 1:nTrials
     % for each trial, compute linear projection by multiplying single trial
     % row vector by the norm and deviding by the length
     lp(itrial,1) = (vectors(:,itrial)'*normVector)/length(normVector);
-    
 end
 subplot(2,2,4)
-plot(lp, vectors(end,:)','.')
-title('relation endpoint vector, projection')
+plot(1, lp,'.')
+title('single trial linear projection')
 
 
 
