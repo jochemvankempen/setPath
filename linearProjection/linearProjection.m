@@ -25,8 +25,10 @@ if nargin<3 || isempty(tt)
     tt= 1:size(erp,1);
 else
     if tt(1) ~= 0
-        warning('timepoint 1 is not 0, so RTs will not be properly assigned')
-        keyboard
+        if ~isempty(RT) || nargin<2
+            warning('timepoint 1 is not 0, so RTs will not be properly assigned')
+            keyboard
+        end
     end
 end
 if nargin<2
@@ -48,6 +50,7 @@ end
 
 averageVector   = mean(erp,2); %column vector, average across trials
 normVector      = averageVector/sqrt(averageVector'*averageVector)^2;% norm of the average vector
+% hold on! post-response data goes into the calculation of the average vector, including for short RT trials (possible contamination of the average vector with artifacts).
 
 
 % tIdx = (tt>=set.BL(1) & tt<=1500); % this is arbitrary so far.
