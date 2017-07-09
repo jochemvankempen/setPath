@@ -1,4 +1,4 @@
-function lp = linearProjection(erp, RT, tt, plot_lp)
+function lp = linearProjection(erp, RT, tt, plot_lp, figureNumber)
 % lp = linearProjection(erp, RT, tt, plot_lp)
 %
 % computes the linear projection of single trials on the average vector.
@@ -18,6 +18,9 @@ function lp = linearProjection(erp, RT, tt, plot_lp)
 % based on papers 10.1038/78856, 10.1073/pnas.1317557111 and 10.1111/ejn.12859
 % jochem van kempen 22/02/2017
 
+if nargin<5 || isempty(figureNumber)
+    figureNumber=1;
+end
 if nargin<4 || isempty(plot_lp)
     plot_lp=0;
 end
@@ -56,7 +59,7 @@ normVector      = averageVector/sqrt(averageVector'*averageVector)^2;% norm of t
 % tIdx = (tt>=set.BL(1) & tt<=1500); % this is arbitrary so far.
 
 if plot_lp
-    figure(1),clf
+    figure(figureNumber),clf
     subplot(2,2,1)
     boundedline(tt, mean(erp,2), std(erp,[],2))
     title('average vector')

@@ -2,7 +2,7 @@ function [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType)
 % [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType)
 %
 % sort values (e.g. RTs) in bins. Ignores NaN values (note that zeros are
-% used in the binning!
+% used in the binning!)
 %
 % INPUT:
 % inpData   = values to sort
