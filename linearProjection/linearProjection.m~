@@ -109,7 +109,7 @@ end
 
 %%
 if plot_lp
-    figure(figureNumber),clf
+        figure(figureNumber),clf
     set(gcf,'Color','White');
     set(gcf,'position',[119    62   989   634])
     set(gcf,'PaperPositionMode','auto')
