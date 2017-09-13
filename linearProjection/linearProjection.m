@@ -62,6 +62,13 @@ if size(erp,1) ~=length(tt)
 end
 [nTime, nTrial] = size(erp);
 
+%%% zscore
+erp  = zscore(erp); %normalise by zscore
+
+% figure(1), subplot(2,1,1), plot(tt,erp(:,1)), xlim([tt(1) tt(end)]), subplot(2,1,2), plot(tt, erp_zscore(:,1)),xlim([tt(1) tt(end)])
+
+
+
 %%% compute average vector and the norm to base the projection on
 averageVector   = mean(erp,2); %column vector, average across trials
 normVector      = averageVector/sqrt(averageVector'*averageVector)^2;% norm of the average vector
