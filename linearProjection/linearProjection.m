@@ -62,10 +62,10 @@ if size(erp,1) ~=length(tt)
 end
 [nTime, nTrial] = size(erp);
 
-%%% zscore
-erp  = zscore(erp); %normalise by zscore
-
-% figure(1), subplot(2,1,1), plot(tt,erp(:,1)), xlim([tt(1) tt(end)]), subplot(2,1,2), plot(tt, erp_zscore(:,1)),xlim([tt(1) tt(end)])
+% %%% zscore
+% erp  = zscore(erp); %normalise by zscore
+% 
+% % figure(1), subplot(2,1,1), plot(tt,erp(:,1)), xlim([tt(1) tt(end)]), subplot(2,1,2), plot(tt, erp_zscore(:,1)),xlim([tt(1) tt(end)])
 
 
 
