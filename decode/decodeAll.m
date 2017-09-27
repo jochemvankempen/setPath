@@ -1,6 +1,7 @@
 function decodeAll(DEC,data,trialLabel,savefilename,decodeDir,times2downsample,freq)
 
 %check if file already exists.
+% if exist([decodeDir 'dTF_' savefilename '.mat' ],'file'), disp(savefilename), return, end
 if exist([decodeDir 'dTF_' savefilename '.mat' ],'file'), disp(savefilename), end
 disp(['working on: ' 'dTF_' savefilename '.mat'])
 
@@ -73,7 +74,7 @@ for iLoop = 1:DEC.loop
         DEC.chan2use = sort(randsample(DEC.nChan,DEC.nChan2select))';
         disp(['random channel iteration ' num2str(iLoop) ' of ' num2str(DEC.randChanCrossVal)])
     elseif isempty(strfind(DEC.dimension, 'each'))
-        DEC.chan2use = 1;
+        DEC.chan2use = 1:DEC.nChan;
     end
     
     %% loop across time and frequency points

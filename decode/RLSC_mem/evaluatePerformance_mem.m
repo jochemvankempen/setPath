@@ -141,7 +141,6 @@ for iSample = 1:DEC.nCrossVal
     end
     % DEC.corrTrain(iLambda,iSample) = AreaUnderROC([trainPHit',trainPFA']);
     corrTrain(iSample) = AreaUnderROC([trainPHit',trainPFA']);
-    
     %% area under R
     % predY = pp(iLambda,iSample).predY;
     predYcriterion = sort(predY,'descend');
