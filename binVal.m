@@ -1,4 +1,4 @@
-function [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType)
+function [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType, edges)
 % [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType)
 %
 % sort values (e.g. RTs) in bins. Ignores NaN values (note that zeros are
@@ -7,7 +7,10 @@ function [binEdges, binIdx, binValues] = binVal(inpData, nBin, binType)
 % INPUT:
 % inpData   = values to sort
 % nBin      = number of bins to sort it in
-% binType   = 'median' or 'equal' (default) split
+% binType   = 'manual', 'median' or 'equal' (default) split. If manual,
+%   edges is required
+% edges     = the edges for the binning procedure in case manual is
+%   selected
 %
 % OUTPUT:
 % binEdges  = Edges of the bins
@@ -24,6 +27,12 @@ tmpDat          = tmpDatOriginal(~nanIdx);
 % sortIdx         = sortIdxOriginal(~nanIdx);
 if nargin<3
     binType = 'equal';
+end
+
+if strcmpi(binType,'manual')
+    if nargin<4
+        error('Need to define the edges when binning values manually')
+    end
 end
 
 if nBin == 1
@@ -52,6 +61,8 @@ switch binType
             binEdges(iBin) = tmpDat(binSize*iBin);
         end
         binEdges = [tmpDat(1) binEdges tmpDat(end)];
+    case 'manual'
+        binEdges = edges;
 end
 
 if nargout == 1 % no need for 
